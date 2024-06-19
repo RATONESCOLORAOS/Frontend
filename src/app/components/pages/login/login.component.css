@@ -1,0 +1,162 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  height: 100%;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.login {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding: 20px;
+  margin: 10px;
+}
+
+.login img.logo {
+  width: 70%;
+  max-width: 300px;
+}
+
+.login h1 {
+  margin-bottom: 30px;
+}
+
+.login form {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login form label {
+  margin-bottom: 10px;
+}
+
+.login form input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #1b0202;
+  border-radius: 4px;
+}
+
+.login button {
+  width: 100%;
+  padding: 10px;
+  background-color: #e49b5d;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.login button:hover {
+  background-color: #b77d3b;
+  transform: scale(1.05);
+}
+
+.login .error-message {
+  margin-top: 15px;
+  color: rgb(19, 1, 1);
+}
+
+.right-image {
+  display: none;
+}
+
+footer {
+  margin-top: auto;
+  width: 100%;
+  background-color: #f1f1f1;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.two-part-body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.botones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.botones button {
+  width: 100%;
+  padding: 10px;
+  background-color: #e49b5d;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.botones button:hover {
+  background-color: #b77d3b;
+  transform: scale(1.05);
+}
+
+.linea {
+  color: #c0c0c0;
+}
+
+.registration-form input,
+.iniciation-form input {
+  background-color: #e49b5d;
+  color: #fff;
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+@media (min-width: 768px) {
+  .two-part-body {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    height: 100vh;
+  }
+
+  .right-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .login {
+    width: 80%;
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .right-image {
+    display: flex;
+  }
+}

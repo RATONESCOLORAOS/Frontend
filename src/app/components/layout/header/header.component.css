@@ -1,0 +1,91 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #e6a56c;
+  position: relative;
+  height: 80px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.logo img {
+  height: 175px;
+}
+
+.nav-links {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.nav-links a {
+  margin: 0 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 25px; /* Ajusta el tamaño class="nav-links */
+}
+
+.nav-links a.active {
+  font-weight: bold;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.profile-letter {
+  font-size: 24px; /* Ajusta el tamaño según tus necesidades */
+  color: #f08a24;
+  
+}
+
+.profile-name {
+  color: white;
+  font-size: 20px; /* Ajusta el tamaño según tus necesidades */
+  margin-right:175px;
+}
+
+.logout-button {
+  background-color: #b77d3b;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px; /* Ajusta el tamaño según tus necesidades */
+  margin-top: 1px;
+  padding: 20px 30px;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+  position: absolute;
+  left: 1775px;
+}
+
+.logout-button:hover {
+  transform: scale(1.1);
+}

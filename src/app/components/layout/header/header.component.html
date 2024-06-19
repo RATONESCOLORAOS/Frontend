@@ -1,0 +1,20 @@
+<div class="header-container">
+  <div class="header-content">
+    <div class="logo">
+      <img src="assets/images/logo2.png" alt="Logo" />
+    </div>
+    <nav class="nav-links">
+      <a routerLink="/dashboard" routerLinkActive="active">Listas</a>
+      <a routerLink="/comparativa" routerLinkActive="active">Comparativa</a>      
+      <a routerLink="/location" routerLinkActive="active">Localización</a>
+      <a routerLink="/statistics" routerLinkActive="active">Estadística</a>
+    </nav>
+    <div class="profile">
+      <div class="profile-icon">
+        <span class="profile-letter">{{ profileLetter }}</span>
+      </div>
+      <div class="profile-name">{{ userName }}</div>
+      <button class="logout-button" (click)="logout()">Salir</button>
+    </div>
+  </div>
+</div>
