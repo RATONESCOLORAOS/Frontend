@@ -1,0 +1,115 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fffffe;
+  color: #000;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.three-part-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  padding: 20px;
+}
+
+.column-left {
+  flex: 0 0 20%; /* Ancho fijo del 20% del contenedor */
+}
+
+.column-center,
+.column-right {
+  flex: 1; /* Toma el resto del espacio disponible */
+}
+
+.column-center,
+.column-right {
+  background-size: 100%;
+  background-position: top;
+  margin-top: 80px;
+}
+
+.upper-content {
+  padding: 10px;
+  text-align: center;
+  background-color: #fefdfd;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mid-content {
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scrollable-content {
+  max-height: 400px; /* Ajusta este valor según sea necesario */
+  overflow-y: auto;
+  width: 100%;
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+}
+
+.small-logo {
+  width: 150px; /* Ajusta según sea necesario */
+}
+
+.mercadona-logo {
+  width: 320px; /* Ajusta según sea necesario */
+}
+
+.prices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.price-card {
+  background-color: #e49b5d; /* Color corporativo */
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1.2em;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.product-card {
+  background: #f8f8f8;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Media queries para adaptación a diferentes tamaños de pantalla */
+@media (max-width: 668px) {
+  .three-part-body {
+    grid-template-columns: 1fr; /* Cambia a una columna en pantallas estrechas (móviles y tabletas) */
+  }
+
+  .column-center,
+  .column-right {
+    margin-top: 10px; /* Reducir el margen superior en columnas derechas en pantallas estrechas */
+    background-size: cover;
+    background-position: center;
+  }
+
+  .upper-content {
+    padding: 10px; /* Reducir el relleno superior en contenido superior en pantallas estrechas */
+  }
+
+  .small-logo {
+    width: 100px; /* Reducir el tamaño de los logotipos pequeños en pantallas estrechas */
+  }
+}

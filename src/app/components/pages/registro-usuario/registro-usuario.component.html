@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Usuario</title>
+    <link rel="stylesheet" href="registro-usuario.component.css" />
+  </head>
+  <body>
+    <div class="three-part-body">
+      <div class="left-image">
+        <img src="assets/images/fondo.png" alt="Imagen Izquierda" />
+      </div>
+      <div class="center-content">
+        <div class="image-container">
+          <img src="assets/images/logo.png" alt="logo" width="300" />
+        </div>
+        <div class="registration-form">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <label for="name">Nombre</label>
+            <input
+              type="text"
+              formControlName="name"
+              id="name"
+              autocomplete="name"
+              [ngClass]="{
+                'input-error':
+                  registerForm.get('name')?.invalid &&
+                  registerForm.get('name')?.touched
+              }"
+            />
+
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              formControlName="email"
+              id="email"
+              autocomplete="email"
+              [ngClass]="{
+                'input-error':
+                  registerForm.get('email')?.invalid &&
+                  registerForm.get('email')?.touched
+              }"
+            />
+
+            <label for="password">Contraseña</label>
+            <input
+              type="password"
+              formControlName="password"
+              id="password"
+              autocomplete="new-password"
+              [ngClass]="{
+                'input-error':
+                  registerForm.get('password')?.invalid &&
+                  registerForm.get('password')?.touched
+              }"
+            />
+
+            <label for="confirmPassword">Repite tu contraseña</label>
+            <input
+              type="password"
+              formControlName="confirmPassword"
+              id="confirmPassword"
+              autocomplete="new-password"
+              [ngClass]="{
+                'input-error':
+                  registerForm.get('confirmPassword')?.invalid &&
+                  registerForm.get('confirmPassword')?.touched
+              }"
+            />
+
+            <div
+              *ngIf="registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched"
+              class="error-message"
+            >
+              El nombre es requerido
+            </div>
+            <div
+              *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched"
+              class="error-message"
+            >
+              Email es requerido
+            </div>
+            <div
+              *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched"
+              class="error-message"
+            >
+              Ingresa un email válido
+            </div>
+            <div
+              *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched"
+              class="error-message"
+            >
+              La contraseña es requerida
+            </div>
+            <div
+              *ngIf="registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.touched"
+              class="error-message"
+            >
+              La contraseña debe tener al menos 8 caracteres
+            </div>
+            <div
+              *ngIf="registerForm.get('confirmPassword')?.errors?.['required'] && registerForm.get('confirmPassword')?.touched"
+              class="error-message"
+            >
+              La confirmación de la contraseña es requerida
+            </div>
+            <div
+              *ngIf="registerForm.errors?.['passwordMismatch'] && registerForm.get('confirmPassword')?.touched"
+              class="error-message"
+            >
+              Las contraseñas no coinciden
+            </div>
+            <p class="pstyle">_______________________________</p>
+            <button type="submit" [disabled]="!registerForm.valid">
+              ¡Listo!
+            </button>
+          </form>
+          <button class="inicio-button" (click)="navigateToLogin()">
+            Volver atrás
+          </button>
+        </div>
+      </div>
+      <div class="right-image">
+        <img src="assets/images/fondo.png" alt="Imagen Derecha" />
+      </div>
+    </div>
+  </body>
+</html>
