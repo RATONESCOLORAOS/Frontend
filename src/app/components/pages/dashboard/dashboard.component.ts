@@ -1,83 +1,250 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../../../services/user.service';
+import { Router } from '@angular/router';
+import { ListService } from '../../../services/list.service';
 import { ProductService } from '../../../services/product.service';
 import { SupermarketService } from '../../../services/supermarket.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { HeaderModule } from '../../layout/header/header.module';
+import { ComparativaComponent } from '../comparativa/comparativa.component';
 
 @Component({
   standalone: true,
-  imports: [FormsModule, CommonModule, HeaderModule],
+  imports: [FormsModule, CommonModule, HeaderModule, ComparativaComponent],
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  listId: number | null = null;
+  userName: string | null = null;
+  newListName: string = '';
+  userLists: any[] = [];
+  selectedList: any | null = null;
+  categories: string[] = [
+    'Fruta y verduras',
+    'Bebidas con alcohol',
+    'Huevos',
+    'Conservas, caldos y cremas',
+    'Cereales y galletas',
+    'Marisco y pescado',
+    'Congelados',
+    'Bebidas sin alcohol',
+    'Leche y yogures',
+    'Higiene',
+    'Frutos secos',
+    'Zumos',
+    'Pizzas y platos preparados',
+    'Panadería y pastelería',
+    'Mantequilla',
+    'Limpieza',
+    'Miel, caramelos y chocolate',
+    'Charcutería y quesos',
+    'Carne',
+    'Mascota',
+    'Aceite, vinagre, especias y salsаs',
+    'Refrescos',
+    'Arroz legumbres y pasta',
+    'Café e infusiones',
+    'Agua',
+  ];
+  products: {
+    id?: number;
+    cartId: number;
+    productName: string;
+    quantity: number;
+    marca: string;
+    categoria: string;
+  }[] = [];
+
   diaTotalPrice: number = 0;
   mercadonaTotalPrice: number = 0;
-  selectedList: any = { diaProducts: [], mercadonaProducts: [] };
-  products: {
-    productName: any;
-    cantidad: any;
-    categoria: any;
-    quantity: any;
-    marca: any;
-    supermercado: any;
-  }[] = [];
-supermarkets: any;
-mapUrl: any;
 
   constructor(
-    private route: ActivatedRoute,
+    private userService: UserService,
+    private router: Router,
+    private listService: ListService,
     private productService: ProductService,
     private supermarketService: SupermarketService
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      this.listId = Number(params.get('id'));
-      if (this.listId) {
-        this.loadTotalPricesAndProducts(this.listId);
-      }
-    });
+    const user = this.userService.getCurrentUser();
+    if (user) {
+      this.userName = user.name;
+      this.loadUserLists(user.id);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 
-  loadTotalPricesAndProducts(cartId: number) {
+  loadUserLists(userId: number) {
+    this.listService.getUserLists(userId).subscribe(
+      (lists: any[]) => {
+        this.userLists = lists;
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error loading user lists', error);
+      }
+    );
+  }
+
+  createList() {
+    if (this.newListName.trim() !== '') {
+      const user = this.userService.getCurrentUser();
+      if (user) {
+        this.listService.createList(this.newListName, user.id).subscribe(
+          () => {
+            console.log(
+              `List "${this.newListName}" created and saved successfully.`
+            );
+            this.loadUserLists(user.id);
+            this.newListName = '';
+          },
+          (error: HttpErrorResponse) => {
+            console.error('Error creating list', error);
+          }
+        );
+      }
+    } else {
+      console.log('Enter a list name');
+    }
+  }
+
+  selectList(list: any) {
+    console.log('Selected list:', list);
+    this.selectedList = list;
+    if (list && list.id) {
+      this.loadProducts(list.id);
+    } else {
+      console.error('Selected list does not have a valid id');
+    }
+  }
+
+  loadProducts(cartId: number) {
+    this.productService.getProductsByCartId(cartId).subscribe(
+      (products: any[]) => {
+        this.products = products;
+        this.getTotalPrices(cartId); // Вызов метода для получения суммы стоимости
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error loading products', error);
+      }
+    );
+  }
+
+  getTotalPrices(cartId: number) {
     this.supermarketService.getTotalPriceForCart(cartId).subscribe(
       (response: any) => {
+        console.log('Total prices for cart: ', response);
         this.diaTotalPrice = response.diaTotalPrice;
         this.mercadonaTotalPrice = response.mercadonaTotalPrice;
+
+        // Логирование структуры данных, чтобы понять, где находится название продукта
+        console.log('diaProducts: ', response.diaProducts);
+        console.log('mercadonaProducts: ', response.mercadonaProducts);
+
         this.selectedList.diaProducts = response.diaProducts.map(
           (product: any) => ({
-            productName: product.product.producto,
-            cantidad: product.product.cantidad,
-            categoria: product.product.categoria,
-            quantity: product.quantity,
+            producto: product.product.producto, // Используем правильное свойство для названия продукта
             marca: product.product.marca,
             formato: product.product.formato,
+            cantidad: product.quantity,
             totalPriceForProduct: product.totalPriceForProduct,
-            supermercado: product.product.supermercado,
           })
         );
+
         this.selectedList.mercadonaProducts = response.mercadonaProducts.map(
           (product: any) => ({
-            productName: product.product.producto,
-            cantidad: product.product.cantidad,
-            categoria: product.product.categoria,
-            quantity: product.quantity,
+            producto: product.product.producto, // Используем правильное свойство для названия продукта
             marca: product.product.marca,
             formato: product.product.formato,
+            cantidad: product.quantity,
             totalPriceForProduct: product.totalPriceForProduct,
-            supermercado: product.product.supermercado,
           })
         );
       },
       (error: HttpErrorResponse) => {
-        console.error('Error getting total prices and products', error);
+        console.error('Error fetching total prices', error);
       }
     );
+  }
+
+  addProductRow() {
+    if (this.selectedList) {
+      this.products.push({
+        cartId: this.selectedList.id,
+        productName: '',
+        quantity: 0,
+        marca: '',
+        categoria: '',
+      });
+    } else {
+      console.log('No list selected');
+    }
+  }
+
+  removeProductRow(index: number) {
+    this.products.splice(index, 1);
+  }
+
+  deleteProduct(productId: number, index: number) {
+    this.productService.deleteProduct(productId).subscribe(
+      () => {
+        console.log('Product deleted successfully');
+        this.products.splice(index, 1);
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error deleting product', error);
+      }
+    );
+  }
+
+  deleteList() {
+    if (this.selectedList) {
+      this.listService.deleteList(this.selectedList.id).subscribe(
+        () => {
+          console.log('List deleted successfully');
+          const user = this.userService.getCurrentUser();
+          if (user) {
+            this.loadUserLists(user.id);
+          }
+          this.selectedList = null;
+          this.products = [];
+        },
+        (error: HttpErrorResponse) => {
+          console.error('Error deleting list', error);
+        }
+      );
+    } else {
+      console.log('No list selected');
+    }
+  }
+
+  saveProducts() {
+    if (this.selectedList) {
+      this.productService
+        .saveProducts(this.selectedList.id, this.products)
+        .subscribe(
+          () => {
+            console.log('Products saved successfully');
+            this.loadProducts(this.selectedList.id);
+          },
+          (error: HttpErrorResponse) => {
+            console.error('Error saving products', error);
+          }
+        );
+    } else {
+      console.log('No list selected');
+    }
+  }
+
+  navigateToComparativa() {
+    if (this.selectedList && this.selectedList.id) {
+      this.router.navigate(['/comparativa', this.selectedList.id]);
+    } else {
+      console.log('No list selected');
+    }
   }
 }
