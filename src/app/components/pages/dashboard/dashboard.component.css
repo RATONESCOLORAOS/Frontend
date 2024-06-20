@@ -1,6 +1,6 @@
 body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  background-image: url("../../../../assets/images/fondo3.png");
+  background-image: url("../../../../assets/images/fondo2.png");
   background-size: auto;
   background-repeat: repeat;
   background-position: center center;
@@ -12,62 +12,189 @@ body {
   overflow-x: hidden;
 }
 
+.upper-content-logo { 
+  padding: 50px;
+}
+
 .container {
-  display: flex;
-  height: calc(100vh - 50px); /* Ajusta esto según la altura de tu header */
-}
-
-.left-panel {
-  flex: 0 0 30%; /* 30% del ancho para la lista */
+  max-width: 80%;
+  margin: 0 auto;
   padding: 20px;
-  
-  overflow-y: auto; /* Permitir desplazamiento si el contenido es demasiado alto */
 }
 
-.right-panel {
-  flex: 0 0 70%; /* 70% del ancho para el mapa */
+.list-form {
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Ocultar desbordamiento para mantener el mapa dentro del contenedor */
 }
 
-h2 {
-  font-size: 30px;
-  color: hwb(0 3% 97%);
-}
-
-.supermarket-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.supermarket-list li {
-  background-color: #e49b5d;
-  color: white;
-  margin: 15px 0;
-  padding: 15px;
-  border-radius: 5px;
-  text-align: center;
-  font-size: 20px;
-}
-
-.button-group {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-}
-
-.option-button {
-  background-color: #e49b5d;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+.list-form input[type="text"] {
+  width: 70%;
+  max-width: 100%;
+  height: 40px;
+  padding: 10px;
   font-size: 16px;
+  border: 2px solid #e49b5d;
+  border-radius: 20px;
+  margin-right: 10px;
+  color: #000;
 }
 
-.option-button:hover {
+.list-form button {
+  width: 30%;
+  height: 40px;
+  padding: 8px 16px;
+  background-color: #e49b5d;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.list-form button:hover {
   background-color: #b77d3b;
 }
+
+.dashboard-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.dashboard-list-content h1 {
+  color: black;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.list-container, .selected-list {
+  flex: 1;
+}
+
+.list {
+  background-color: #e49b5d;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  width: 40%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.list:hover {
+  background-color: #a9acbd;
+  transform: scale(1.05);
+}
+
+.selected-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.selected-list h2 {
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  background-color: #a9acbd;
+  border-radius: 7px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-right: 0px;
+}
+
+.delete-button button, .comparativa-button {
+  padding: 10px 20px;
+  background-color: #a9acbd;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.delete-button button:hover, .comparativa-button:hover {
+  background-color: #dd8d15;;
+    transform: scale(1.05);
+}
+
+.products-form {
+  background-color: #f0dddd;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1;
+}
+
+.product-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.product-row input[type="text"], .product-row input[type="number"], .product-row select {
+  width: calc(33% - 10px);
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #a9acbd;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #807e7e;
+  margin-right: 10px;
+}
+
+.product-row .delete-from-db {
+  height: 35px;
+  padding: 0 10px;
+  background-color: #a9acbd;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.product-row .delete-from-db:hover {
+  background-color: #e49b5d;
+  transform: scale(1.05);
+}
+
+.products-form button {
+  padding: 10px 20px;
+  background-color: #a9acbd;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.products-form button:hover {
+  background-color: #e49b5d;
+  transform: scale(1.05);
+}
+

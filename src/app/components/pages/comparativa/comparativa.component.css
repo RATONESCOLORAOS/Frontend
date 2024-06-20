@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #fffffe;
+  background-color: #e2e2dd;
   color: #000;
   margin: 0;
   padding: 0;
@@ -33,13 +33,20 @@ body {
 .upper-content {
   padding: 10px;
   text-align: center;
-  background-color: #fefdfd;
+  
+  width: 100%;
+  box-sizing: border-box;
+}
+.upper-content2 {
+  padding: 10px;
+  text-align: center;
+  background-color: #e49b5d;
   width: 100%;
   box-sizing: border-box;
 }
 
 .mid-content {
-  padding: 20px;
+  padding: 0px;
   text-align: center;
   width: 100%;
   display: flex;
