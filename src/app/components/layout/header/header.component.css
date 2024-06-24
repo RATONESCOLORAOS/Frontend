@@ -46,6 +46,21 @@
 .profile {
   display: flex;
   align-items: center;
+  text-decoration: none;
+  margin-right: 50px; /* Añadido para empujar el perfil hacia la izquierda */
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 20px; /* Puedes ajustar este margen para mover el perfil a la izquierda */
+}
+
+.profile-label {
+  color: white;
+  font-size: 14px; /* Ajusta el tamaño según tus necesidades */
+  margin-bottom: 5px; /* Espacio entre "perfil" y el círculo */
 }
 
 .profile-icon {
@@ -56,19 +71,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 20px;
-}
-
-.profile-letter {
-  font-size: 24px; /* Ajusta el tamaño según tus necesidades */
-  color: #f08a24;
   
 }
 
-.profile-name {
-  color: white;
-  font-size: 20px; /* Ajusta el tamaño según tus necesidades */
-  margin-right:175px;
+.profile-letter {
+  font-size: 14px; /* Ajusta el tamaño según tus necesidades */
+  color: #f08a24;
+  text-align: center; /* Asegura que el texto esté centrado */
+  padding: 0 5px; /* Espacio interno si el nombre es largo */
 }
 
 .logout-button {
@@ -83,7 +93,7 @@
   transition: transform 0.3s ease;
   text-decoration: none;
   position: absolute;
-  left: 1775px;
+  right: 1600px; /* Cambiado de left a right para posicionarlo desde el borde derecho */
 }
 
 .logout-button:hover {

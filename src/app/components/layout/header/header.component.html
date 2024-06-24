@@ -9,12 +9,14 @@
       <a routerLink="/location" routerLinkActive="active">Localización</a>
       <a routerLink="/statistics" routerLinkActive="active">Estadística</a>
     </nav>
-    <div class="profile">
-      <div class="profile-icon">
-        <span class="profile-letter">{{ profileLetter }}</span>
+    <a routerLink="/register" class="profile"> <!-- Cambiado div por a y añadido routerLink -->
+      <div class="profile-container">
+        <div class="profile-label">Perfil</div>
+        <div class="profile-icon">
+          <span class="profile-letter">{{ userName }}</span>
+        </div>
       </div>
-      <div class="profile-name">{{ userName }}</div>
-      <button class="logout-button" (click)="logout()">Salir</button>
-    </div>
+    </a>
+    <button class="logout-button" (click)="logout()">Salir</button>
   </div>
 </div>
