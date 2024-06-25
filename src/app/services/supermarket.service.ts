@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,9 +9,14 @@ import { Observable } from 'rxjs';
 export class SupermarketService {
   private apiUrl = 'http://localhost:8080/api/carts';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService) {}
 
   getTotalPriceForCart(cartId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/totalPrice/${cartId}`);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${this.userService.getToken()}`,
+      },
+    };
+    return this.http.get<any>(`${this.apiUrl}/totalPrice/${cartId}`, config);
   }
 }

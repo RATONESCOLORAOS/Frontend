@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../Frontend/.angular"
+		},
+		{
+			"path": "../../Frontend/.vscode"
+		},
+		{
+			"path": "../../Frontend/dist"
+		},
+		{
+			"path": "../../Frontend/node_modules"
+		},
+		{
+			"path": "../../Frontend/src"
+		}
+	],
+	"settings": {}
+}

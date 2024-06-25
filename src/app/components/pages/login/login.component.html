@@ -12,9 +12,7 @@
       <div class="two-part-body">
         <div class="login">
           <img src="assets/images/logo.png" alt="Logo" class="logo" />
-
           <h1>¿Ya tienes una cuenta?</h1>
-
           <form (ngSubmit)="onSubmit()">
             <label for="email">Correo Electrónico</label>
             <br />
@@ -25,12 +23,11 @@
                 name="email"
                 required
                 autocomplete="email"
-                [(ngModel)]="user.email"
-              />
+                [(ngModel)]="user.email"/>
             </div>
-            <br />
+            <br/>
             <label for="password">Contraseña</label>
-            <br />
+            <br/>
             <div class="registration-form">
               <input
                 type="password"
@@ -38,8 +35,7 @@
                 name="password"
                 required
                 autocomplete="current-password"
-                [(ngModel)]="user.password"
-              />
+                [(ngModel)]="user.password"/>
             </div>
             <p class="linea">-----------------o---------------</p>
             <div class="botones">

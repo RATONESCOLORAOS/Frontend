@@ -9,7 +9,8 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { customEmailValidator } from './custom-validators'; // Asegúrate de que la ruta del validador personalizado sea correcta
+import { UserService } from '../../../services/user.service'; 
+import { customEmailValidator } from './custom-validators';
 
 @Component({
   selector: 'app-registro-usuario',
@@ -24,7 +25,8 @@ export class RegistroUsuarioComponent {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {
     this.registerForm = this.fb.group(
       {
@@ -45,17 +47,16 @@ export class RegistroUsuarioComponent {
       console.error('Formulario no válido');
       return;
     }
-    this.http
-      .post('http://localhost:8080/api/v1/guardar', this.registerForm.value)
-      .subscribe(
-        (response) => {
-          console.log('Usuario registrado correctamente', response);
-          this.router.navigate(['/login']);
-        },
-        (error) => {
-          console.error('Error en registro de usuario', error);
-        }
-      );
+    this.userService.register(this.registerForm.value).subscribe(
+      (response) => {
+        console.log('Usuario registrado correctamente', response);
+        this.userService.setCurrentUser(response);
+        this.router.navigate(['/login']);
+      },
+      (error: any) => {
+        console.error('Error en registro de usuario', error);
+      }
+    );
   }
 
   navigateToLogin() {

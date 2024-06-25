@@ -1,59 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comparativa de cestas</title>
-  <link rel="stylesheet" href="comparativa.component.css" />
-</head>
-<body>
-  <app-header></app-header>
-  <div class="three-part-body">
-    <div class="column-left">
-      <div class="upper-content">
-        <img src="assets/images/logo.png" alt="Logo" class="logo" />
-      </div>
-      <div class="mid-content prices">
-        <div class="price-card dia-price">
-          <p>Total precio en Dia: {{ diaTotalPrice | number : "1.2-2" }}</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comparativa de cestas</title>
+    <link rel="stylesheet" href="comparativa.component.css" />
+  </head>
+  <body>
+    <app-header></app-header>
+    <div class="three-part-body">
+      <div class="column-left">
+        <div class="upper-content">
+          <img src="assets/images/logo.png" alt="Logo" class="logo" />
         </div>
-        <div class="price-card mercadona-price">
-          <p>Total precio en Mercadona: {{ mercadonaTotalPrice | number : "1.2-2" }}</p>
+        <div class="mid-content prices">
+          <div class="price-card dia-price">
+            <p>Total precio en Dia: {{ diaTotalPrice | number : "1.2-2" }}</p>
+          </div>
+          <div class="price-card mercadona-price">
+            <p>
+              Total precio en Mercadona:
+              {{ mercadonaTotalPrice | number : "1.2-2" }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="column-center"
+        style="background-image: url('assets/images/fondo2.png')"
+      >
+        <div class="upper-content2">
+          <img
+            src="assets/images/mercadona.png"
+            alt="Mercadona Logo"
+            class="logo small-logo mercadona-logo"
+          />
+        </div>
+        <div class="mid-content scrollable-content">
+          <ul>
+            <li
+              *ngFor="let product of selectedList.mercadonaProducts"
+              class="product-card"
+            >
+              <p>Producto: {{ product.productName }}</p>
+              <p>Marca: {{ product.marca }}</p>
+              <p>Formato: {{ product.formato }}</p>
+              <p>Cantidad: {{ product.quantity }}</p>
+              <p>Precio total:{{ product.totalPriceForProduct | number : "1.2-2" }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="column-right"style="background-image: url('assets/images/fondo2.png')">
+        <div class="upper-content2">
+          <img src="assets/images/dia.png"
+            alt="Dia Logo"
+            class="logo small-logo"
+          />
+        </div>
+        <div class="mid-content scrollable-content">
+          <ul>
+            <li
+              *ngFor="let product of selectedList.diaProducts"
+              class="product-card"
+            >
+              <p>Producto: {{ product.productName }}</p>
+              <p>Marca: {{ product.marca }}</p>
+              <p>Formato: {{ product.formato }}</p>
+              <p>Cantidad: {{ product.quantity }}</p>
+              <p>Precio total:{{ product.totalPriceForProduct | number : "1.2-2" }}</p>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="column-center" style="background-image: url('assets/images/fondo2.png')">
-      <div class="upper-content2">
-        <img src="assets/images/mercadona.png" alt="Mercadona Logo" class="logo small-logo mercadona-logo" />
-      </div>
-      <div class="mid-content scrollable-content">
-        <ul>
-          <li *ngFor="let product of selectedList.mercadonaProducts" class="product-card">
-            <p>Producto: {{ product.productName }}</p>
-            <p>Marca: {{ product.marca }}</p>
-            <p>Formato: {{ product.formato }}</p>
-            <p>Cantidad: {{ product.quantity }}</p>
-            <p>Precio total: {{ product.totalPriceForProduct }}</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="column-right" style="background-image: url('assets/images/fondo2.png')">
-      <div class="upper-content2">
-        <img src="assets/images/dia.png" alt="Dia Logo" class="logo small-logo" />
-      </div>
-      <div class="mid-content scrollable-content">
-        <ul>
-          <li *ngFor="let product of selectedList.diaProducts" class="product-card">
-            <p>Producto: {{ product.productName }}</p>
-            <p>Marca: {{ product.marca }}</p>
-            <p>Formato: {{ product.formato }}</p>
-            <p>Cantidad: {{ product.quantity }}</p>
-            <p>Precio total: {{ product.totalPriceForProduct }}</p>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</body>
+  </body>
 </html>

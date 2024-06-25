@@ -14,22 +14,21 @@ body {
 
 .container {
   display: flex;
-  height: calc(100vh - 50px); /* Ajusta esto según la altura de tu header */
-}
+  height: calc(100vh - 50px); 
 
 .left-panel {
-  flex: 0 0 30%; /* 30% del ancho para la lista */
+  flex: 0 0 30%; 
   padding: 20px;
   
-  overflow-y: auto; /* Permitir desplazamiento si el contenido es demasiado alto */
+  overflow-y: auto; 
 }
 
 .right-panel {
-  flex: 0 0 70%; /* 70% del ancho para el mapa */
+  flex: 0 0 70%; 
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Ocultar desbordamiento para mantener el mapa dentro del contenedor */
+  overflow: hidden;
 }
 
 h2 {
@@ -70,4 +69,5 @@ h2 {
 
 .option-button:hover {
   background-color: #b77d3b;
+}
 }

@@ -1,6 +1,5 @@
 body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  
   background-size: auto;
   background-repeat: repeat;
   background-position: center center;
@@ -12,7 +11,7 @@ body {
   overflow-x: hidden;
 }
 
-.upper-content-logo { 
+.upper-content-logo {
   padding: 50px;
 }
 
@@ -28,28 +27,27 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 
 .list-form input[type="text"] {
-  width: 70%;
-  max-width: 100%;
+  width: 100%;
   height: 40px;
   padding: 10px;
   font-size: 16px;
   border: 2px solid #e49b5d;
   border-radius: 20px;
-  margin-right: 10px;
+  margin-bottom: 10px;
   color: #000;
 }
 
 .list-form button {
-  width: 30%;
+  width: 100%;
   height: 40px;
   padding: 8px 16px;
   background-color: #e49b5d;
-  color: #fff;
+  color: #ffffff;
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -62,7 +60,7 @@ body {
 
 .dashboard-content {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   gap: 20px;
 }
 
@@ -72,7 +70,8 @@ body {
   margin-bottom: 10px;
 }
 
-.list-container, .selected-list {
+.list-container,
+.selected-list {
   flex: 1;
 }
 
@@ -85,9 +84,9 @@ body {
   color: #fff;
   font-size: 18px;
   transition: all 0.3s ease;
-  width: 40%;
   text-align: center;
   box-sizing: border-box;
+  position: relative;
 }
 
 .list:hover {
@@ -95,10 +94,26 @@ body {
   transform: scale(1.05);
 }
 
+.delete-list-btn {
+  background-color: #b77d3b;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.delete-list-btn:hover {
+  background-color: #dd8d15;
+}
+
 .selected-list {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 20px;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.5);
@@ -121,8 +136,15 @@ body {
   margin-right: 0px;
 }
 
-.delete-button button, .comparativa-button {
-  padding: 10px 20px;
+.sidebar img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.delete-button button,
+.comparativa-button {
+  padding: auto;
   background-color: #a9acbd;
   color: #fff;
   border: none;
@@ -131,34 +153,40 @@ body {
   font-size: 14px;
 }
 
-.delete-button button:hover, .comparativa-button:hover {
-  background-color: #dd8d15;;
-    transform: scale(1.05);
+.delete-button button:hover,
+.comparativa-button:hover {
+  background-color: #dd8d15;
+  transform: scale(1.05);
 }
 
 .products-form {
-  background-color: #f0dddd;
+  background-color: #ddf0df;
   padding: 20px;
   border-radius: 10px;
-  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-row {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.product-row input[type="text"], .product-row input[type="number"], .product-row select {
-  width: calc(33% - 10px);
+.product-row input[type="text"],
+.product-row input[type="number"],
+.product-row select {
+  width: 100%;
+  max-width: calc(33% - 10px);
   padding: 10px;
   font-size: 16px;
   border: 2px solid #a9acbd;
   border-radius: 4px;
   background-color: transparent;
   color: #807e7e;
-  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .product-row .delete-from-db {
@@ -173,7 +201,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 10px;
 }
 
 .product-row .delete-from-db:hover {
@@ -190,7 +217,6 @@ body {
   cursor: pointer;
   font-size: 14px;
   margin-top: 10px;
-  margin-right: 10px;
 }
 
 .products-form button:hover {
@@ -198,3 +224,80 @@ body {
   transform: scale(1.05);
 }
 
+@media (min-width: 769px) {
+  .dashboard-content {
+    flex-direction: row;
+  }
+
+  .list-form {
+    flex-direction: row;
+  }
+
+  .list-form input[type="text"] {
+    width: 70%;
+    margin-right: 10px;
+    margin-bottom: 0;
+  }
+
+  .list-form button {
+    width: 30%;
+  }
+
+  .list-container,
+  .selected-list {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-content {
+    flex-direction: column;
+  }
+
+  .list {
+    width: 100%;
+  }
+
+  .list-container,
+  .selected-list {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .upper-content-logo {
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 95%;
+    padding: 10px;
+  }
+
+  .list-form {
+    padding: 10px;
+  }
+
+  .selected-list h2 {
+    font-size: 24px;
+  }
+
+  .product-row input[type="text"],
+  .product-row input[type="number"],
+  .product-row select {
+    max-width: 100%;
+    margin-right: 0;
+  }
+
+  .delete-button button,
+  .comparativa-button,
+  .products-form button {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+
+  .list-container,
+  .selected-list {
+    width: 100%;
+  }
+}

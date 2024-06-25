@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit {
     'Charcutería y quesos',
     'Carne',
     'Mascota',
-    'Aceite, vinagre, especias y salsаs',
+    'Aceite, vinagre, especias y salsas',
     'Refrescos',
     'Arroz legumbres y pasta',
     'Café e infusiones',
@@ -56,6 +56,7 @@ export class DashboardComponent implements OnInit {
     quantity: number;
     marca: string;
     categoria: string;
+    toRemove?: boolean;
   }[] = [];
 
   diaTotalPrice: number = 0;
@@ -126,7 +127,7 @@ export class DashboardComponent implements OnInit {
     this.productService.getProductsByCartId(cartId).subscribe(
       (products: any[]) => {
         this.products = products;
-        this.getTotalPrices(cartId); // Вызов метода для получения суммы стоимости
+        this.getTotalPrices(cartId); 
       },
       (error: HttpErrorResponse) => {
         console.error('Error loading products', error);
@@ -141,13 +142,13 @@ export class DashboardComponent implements OnInit {
         this.diaTotalPrice = response.diaTotalPrice;
         this.mercadonaTotalPrice = response.mercadonaTotalPrice;
 
-        // Логирование структуры данных, чтобы понять, где находится название продукта
+        
         console.log('diaProducts: ', response.diaProducts);
         console.log('mercadonaProducts: ', response.mercadonaProducts);
 
         this.selectedList.diaProducts = response.diaProducts.map(
           (product: any) => ({
-            producto: product.product.producto, // Используем правильное свойство для названия продукта
+            producto: product.product.producto, 
             marca: product.product.marca,
             formato: product.product.formato,
             cantidad: product.quantity,
@@ -157,7 +158,7 @@ export class DashboardComponent implements OnInit {
 
         this.selectedList.mercadonaProducts = response.mercadonaProducts.map(
           (product: any) => ({
-            producto: product.product.producto, // Используем правильное свойство для названия продукта
+            producto: product.product.producto, 
             marca: product.product.marca,
             formato: product.product.formato,
             cantidad: product.quantity,
@@ -201,17 +202,19 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  deleteList() {
-    if (this.selectedList) {
-      this.listService.deleteList(this.selectedList.id).subscribe(
+  deleteList(list: any) {
+    if (list) {
+      this.listService.deleteList(list.id).subscribe(
         () => {
           console.log('List deleted successfully');
           const user = this.userService.getCurrentUser();
           if (user) {
             this.loadUserLists(user.id);
           }
-          this.selectedList = null;
-          this.products = [];
+          if (this.selectedList && this.selectedList.id === list.id) {
+            this.selectedList = null;
+            this.products = [];
+          }
         },
         (error: HttpErrorResponse) => {
           console.error('Error deleting list', error);
@@ -224,8 +227,23 @@ export class DashboardComponent implements OnInit {
 
   saveProducts() {
     if (this.selectedList) {
-      this.productService
-        .saveProducts(this.selectedList.id, this.products)
+      const updateRequest = {
+        cartName: this.selectedList.name,
+        productsToAdd: this.products
+          .filter((p) => !p.id)
+          .map((p) => ({
+            productName: p.productName,
+            marca: p.marca,
+            quantity: p.quantity,
+            categoria: p.categoria,
+          })),
+        productsToRemove: this.products
+          .filter((p) => p.id && p.toRemove)
+          .map((p) => p.id),
+      };
+
+      this.listService
+        .updateList(this.selectedList.id, updateRequest)
         .subscribe(
           () => {
             console.log('Products saved successfully');
@@ -246,5 +264,25 @@ export class DashboardComponent implements OnInit {
     } else {
       console.log('No list selected');
     }
+  }
+
+  updateProduct(product: any) {
+    if (this.selectedList) {
+      this.productService.updateProduct(product.id, product).subscribe(
+        () => {
+          console.log('Product updated successfully');
+          this.loadProducts(this.selectedList.id);
+        },
+        (error: HttpErrorResponse) => {
+          console.error('Error updating product', error);
+        }
+      );
+    }
+  }
+
+  exitList() {
+    this.selectedList = null;
+    this.products = [];
+    console.log('Has salido de la lista');
   }
 }

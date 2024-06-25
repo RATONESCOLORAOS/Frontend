@@ -13,6 +13,6 @@ export class StatisticsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    // Lógica de inicialización si es necesario
+   
   }
 }
