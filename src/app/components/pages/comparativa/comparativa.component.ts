@@ -43,6 +43,16 @@ export class ComparativaComponent implements OnInit {
     });
   }
 
+  selectList(list: any) {
+    console.log('Selected list:', list);
+    this.selectedList = list;
+    if (list && list.id) {
+      this.loadTotalPricesAndProducts(list.id);
+    } else {
+      console.error('Selected list does not have a valid id');
+    }
+  }
+
   loadTotalPricesAndProducts(cartId: number) {
     this.supermarketService.getTotalPriceForCart(cartId).subscribe(
       (response: any) => {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
-import { Router } from '@angular/router'; // Importación correcta
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   userName: string | null = null;
   profileLetter: string = '';
 
-  constructor(private userService: UserService, private router: Router) {} // Inyectando Router en el constructor
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     const user = this.userService.getCurrentUser();
@@ -22,6 +22,10 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['/login']); // Uso del enrutador para la navegación
+    this.router.navigate(['/login']);
+  }
+
+  navigateToMap() {
+    this.router.navigate(['/map']);
   }
 }

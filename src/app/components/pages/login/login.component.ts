@@ -23,24 +23,28 @@ export class LoginComponent {
   ) {}
 
   onSubmit() {
-    this.http
-      .post('http://localhost:8080/api/v1/login', this.user, {
-        responseType: 'json', // Ожидаем JSON ответ
-      })
-      .subscribe(
-        (response: any) => {
-          console.log('Usuario logged in correctamente', response);
-          this.userService.setCurrentUser(response);
-          this.router.navigate(['/dashboard']);
-        },
-        (error: HttpErrorResponse) => {
-          console.error('Pasa algo!!!', error);
-          this.errorMessage =
-            'Correo o contraseña incorrectos. Por favor, inténtelo de nuevo.';
-        }
-      );
+    this.userService.login(this.user).subscribe(
+      (response: any) => {
+        this.userService.setToken(response.token);
+        console.log('Usuario logged in correctamente', response);
+        this.userService.me().subscribe(
+          (userData) => {
+            this.userService.setCurrentUser(userData);
+            this.router.navigate(['/dashboard']);
+          },
+          (error) => {
+            console.error('Error fetching user data', error);
+            this.errorMessage = 'Error fetching user data';
+          }
+        );
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error during login', error);
+        this.errorMessage =
+          'Correo o contraseña incorrectos. Por favor, inténtelo de nuevo.';
+      }
+    );
   }
-
   navigateToRegister() {
     this.router.navigate(['/register']);
   }

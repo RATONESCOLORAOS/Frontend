@@ -3,18 +3,25 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
 import { LoginComponent } from './components/pages/login/login.component';
 import { RegistroUsuarioComponent } from './components/pages/registro-usuario/registro-usuario.component';
 import { ComparativaComponent } from './components/pages/comparativa/comparativa.component';
-import { LocationComponent } from './components/pages/location/location.component'; // Importa el componente de ubicación
-import { StatisticsComponent } from './components/pages/statistics/statistics.component'; // Importa el nuevo componente
-
+import { AuthGuard } from './services/auth.guard';
+import { LocationComponent } from './components/pages/location/location.component';
+import { StatisticsComponent } from './components/pages/statistics/statistics.component'; 
 
 export const routes: Routes = [
   { path: 'register', component: RegistroUsuarioComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'comparativa/:id', component: ComparativaComponent },
-  { path: 'comparativa', component: ComparativaComponent },
-  { path: 'location', component: LocationComponent },
-  { path: 'statistics', component: StatisticsComponent }, // Agrega la nueva ruta
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'comparativa/:id',
+    component: ComparativaComponent,
+    canActivate: [AuthGuard],
+  },
+
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/dashboard' },
+  { path: 'location', component: LocationComponent },
+  { path: 'statistics', component: StatisticsComponent },
 ];

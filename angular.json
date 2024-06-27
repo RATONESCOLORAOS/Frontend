@@ -24,8 +24,8 @@
               "src/favicon.ico",
               "src/assets"
             ],
-           "styles": [
-             "src/styles.css"
+            "styles": [
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -39,7 +39,7 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "3kb",
+                  "maximumWarning": "2kb",
                   "maximumError": "4kb"
                 }
               ],
@@ -93,6 +93,6 @@
     }
   },
   "cli": {
-    "analytics": "13777625-d4dd-4164-ad7a-b85bf9125313"
+    "analytics": false
   }
 }

@@ -11,17 +11,12 @@ describe('ComparativaComponent', () => {
         })
         .compileComponents();
     });
-
     beforeEach(() => {
         fixture = TestBed.createComponent(ComparativaComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
-
     it('should create the component', () => {
         expect(component).toBeTruthy();
     });
-
-    // Add more test cases here
-
 });

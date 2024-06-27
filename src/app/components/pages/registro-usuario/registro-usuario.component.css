@@ -1,9 +1,9 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #ffffff; /* Fondo blanco */
-  color: #000; /* Texto en color negro para mejor contraste */
+  background-color: #ffffff;
+  color: #000; 
   margin: 0;
-  overflow-x: hidden; /* Previene el desplazamiento lateral en todo el cuerpo del documento */
+  overflow-x: hidden; 
 }
 
 .pstyle {
@@ -49,7 +49,7 @@ body {
   text-align: center;
   flex-direction: column;
   position: relative;
-  min-height: 600px; /* Asegura suficiente espacio para el contenido */
+  min-height: 600px; 
 }
 
 main {
@@ -114,20 +114,18 @@ main {
   background-color: #666;
 }
 
-/* Mensajes de error */
+
 .error-message {
-  color: red; /* Color rojo para los mensajes de error */
+  color: red; 
   font-size: 0.8em;
   margin-top: 5px;
 }
 
-/* Estilo para inputs con error */
-input.ng-invalid.ng-touched {
-  border-color: red; /* Borde rojo cuando hay error */
-  animation: shake 0.5s; /* Animación de temblor */
-}
 
-/* Animación de agitación */
+input.ng-invalid.ng-touched {
+  border-color: red; 
+  animation: shake 0.5s; 
+}
 @keyframes shake {
   0%,
   100% {
@@ -141,9 +139,6 @@ input.ng-invalid.ng-touched {
   }
 }
 
-/* Media queries para diferentes tamaños de pantalla */
-
-/* Para pantallas pequeñas (móviles) */
 @media (max-width: 600px) {
   .three-part-body {
     display: flex;
@@ -153,7 +148,7 @@ input.ng-invalid.ng-touched {
 
   .left-image,
   .right-image {
-    display: none; /* Ocultar imágenes laterales en pantallas pequeñas */
+    display: none; 
   }
 
   .center-content {
@@ -161,14 +156,13 @@ input.ng-invalid.ng-touched {
   }
 
   .registration-form {
-    width: 90%; /* Hacer la forma más ancha en pantallas pequeñas */
+    width: 90%; 
   }
 }
 
-/* Para pantallas medianas (tabletas) */
 @media (min-width: 601px) and (max-width: 1024px) {
   .three-part-body {
-    grid-template-columns: 1fr 2fr 1fr; /* Ajustar columnas para pantallas medianas */
+    grid-template-columns: 1fr 2fr 1fr; 
   }
 
   .left-image,
@@ -187,10 +181,10 @@ input.ng-invalid.ng-touched {
   }
 }
 
-/* Para pantallas grandes (escritorio) */
+
 @media (min-width: 1025px) {
   .three-part-body {
-    grid-template-columns: 1fr 3fr 1fr; /* Ajustar columnas para pantallas grandes */
+    grid-template-columns: 1fr 3fr 1fr; 
   }
 
   .left-image,
