@@ -41,6 +41,44 @@
         text-decoration: none;
         cursor: pointer;
       }
+
+      
+      .button-container {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px; 
+      }
+
+      .button-container button {
+        flex: 1; 
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .horizontal-button {
+        flex: 1; 
+      }
+
+      .save-button {
+        background-color: #a9acbd; 
+        color: #fff;
+      }
+
+      .comparativa-button {
+        background-color: #a9acbd;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .comparativa-button:hover {
+        background-color: #dd8d15;
+      }
     </style>
   </head>
   <body>
@@ -52,6 +90,7 @@
             <input
               type="text"
               [(ngModel)]="newListName"
+              (keydown)="handleKeyDown($event)"
               placeholder="Nuevo nombre de la lista"
             />
             <button (click)="createList()">Crear lista</button>
@@ -80,60 +119,29 @@
                 <h2>{{ selectedList.name }}</h2>
               </div>
               <div class="products-form">
-                <div
-                  class="product-row"
-                  *ngFor="let product of products; let i = index"
-                >
-                  <input
-                    type="text"
-                    [(ngModel)]="product.productName"
-                    placeholder="Nombre del producto"
-                  />
-                  <input
-                    type="text"
-                    [(ngModel)]="product.marca"
-                    placeholder="Marca"
-                  />
-                  <input
-                    type="number"
-                    [(ngModel)]="product.quantity"
-                    placeholder="Cantidad"
-                  />
-                  <select [(ngModel)]="product.categoria">
-                    <option
-                      *ngFor="let category of categories"
-                      [value]="category"
-                      name="categoria"
-                    >
-                      {{ category }}
-                    </option>
-                  </select>
-                  <button
-                    *ngIf="product.id"
-                    class="delete-from-db"
-                    (click)="deleteProduct(product.id, i)"
-                  >
+                <div class="product-row" *ngFor="let product of products; let i = index">
+                  <div class="product-details horizontal">
+                    <input type="text" [(ngModel)]="product.productName" placeholder="Nombre del producto" />
+                    <input type="number" [(ngModel)]="product.quantity" placeholder="Cantidad" min="0" />
+                    <input type="text" [(ngModel)]="product.marca" placeholder="Marca" />
+                  </div>
+                  <div class="product-details horizontal">
+                    <select [(ngModel)]="product.categoria">
+                      <option *ngFor="let category of categories" [value]="category" [selected]="product.categoria === category">
+                        {{ category }}
+                      </option>
+                    </select>
+                  </div>
+                  <button *ngIf="product.id" class="delete-from-db" (click)="deleteProduct(product.id, i)">
                     Eliminar del carrito
                   </button>
-                  <button
-                    *ngIf="product.id"
-                    class="delete-from-db"
-                    (click)="updateProduct(product)"
-                  >
-                    Guardar cambios
-                  </button>
                 </div>
-                <button (click)="addProductRow()">Añadir producto</button>
-                <button
-                  class="comparativa-button"
-                  (click)="navigateToComparativa()"
-                >
-                  Comparar precios
-                </button>
-                <button class="save-button" (click)="saveProducts()">
-                  Guardar productos
-                </button>
-                <button (click)="exitList()">Salir de la lista</button>
+                <div class="button-container">
+                  <button (click)="addProductRow()" class="horizontal-button">Añadir producto</button>
+                  <button class="save-button horizontal-button" (click)="saveAndUpdate()">Guardar productos</button>
+                  <button class="comparativa-button" (click)="navigateToComparativa()">Comparar precios</button>
+                  <button (click)="exitList()">Salir de la lista</button>
+                </div>
               </div>
             </div>
           </div>

@@ -15,11 +15,12 @@ body {
 .container {
   display: flex;
   height: calc(100vh - 50px); 
+}
 
 .left-panel {
   flex: 0 0 30%; 
   padding: 20px;
-  
+
   overflow-y: auto; 
 }
 
@@ -28,10 +29,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: hidden; 
+}
+
+#mapid {
+  width: 100%;
+  height: 100%;
 }
 
 h2 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 30px;
   color: hwb(0 3% 97%);
 }
@@ -42,6 +49,7 @@ h2 {
 }
 
 .supermarket-list li {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   background-color: #e49b5d;
   color: white;
   margin: 15px 0;
@@ -69,5 +77,4 @@ h2 {
 
 .option-button:hover {
   background-color: #b77d3b;
-}
 }

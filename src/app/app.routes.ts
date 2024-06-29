@@ -4,7 +4,7 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { RegistroUsuarioComponent } from './components/pages/registro-usuario/registro-usuario.component';
 import { ComparativaComponent } from './components/pages/comparativa/comparativa.component';
 import { AuthGuard } from './services/auth.guard';
-import { LocationComponent } from './components/pages/location/location.component';
+import { LocationComponent } from './components/pages/location/location.component'; 
 import { StatisticsComponent } from './components/pages/statistics/statistics.component'; 
 
 export const routes: Routes = [
