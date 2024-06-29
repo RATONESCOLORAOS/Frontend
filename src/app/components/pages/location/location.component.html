@@ -1,37 +1,18 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Localización</title>
-  <link rel="stylesheet" href="location.component.css">
-</head>
-<body>
-       <div>
-        <app-header></app-header>
-        <main>
-          <div class="container">
-            <div class="left-panel">
-              <h2>Tu supermercado más cercano es:</h2>
-              <ul class="supermarket-list">
-              <li *ngFor="let supermarket of supermarkets">{{ supermarket.name }}</li>
-              </ul>
-              <h2>¿Cómo vas a realizar la compra?</h2>
-              <div class="button-group">
-                <button class="option-button">A pie</button>
-                <button class="option-button">En vehículo</button>
-              </div>
-            </div>
-            <div class="right-panel">
-              <iframe width="100%"
-                height="100%"
-                style="border:0"
-                loading="lazy"
-                allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"
-                [src]="mapUrl">
-              </iframe>
-            </div>
-          </div>
-        </main>
+<div>
+  <app-header></app-header>
+  <main>
+    <div class="container">
+      <div class="left-panel">
+        <h2>Tu supermercado más cercano es:</h2>
+        <ul class="supermarket-list">
+          <li *ngFor="let supermarket of supermarkets">
+            {{ supermarket.name }}
+          </li>
+        </ul>
       </div>
+      <div class="right-panel">
+        <div id="mapid"></div>
+      </div>
+    </div>
+  </main>
+</div>

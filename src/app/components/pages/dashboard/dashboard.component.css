@@ -27,8 +27,8 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row; 
+  align-items: center; 
 }
 
 .list-form input[type="text"] {
@@ -43,7 +43,7 @@ body {
 }
 
 .list-form button {
-  width: 100%;
+  width: 30%; 
   height: 40px;
   padding: 8px 16px;
   background-color: #e49b5d;
@@ -169,24 +169,32 @@ body {
 
 .product-row {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 10px;
   margin-bottom: 10px;
+}
+
+.product-details.horizontal {
+  display: flex;
+  gap: 10px;
+}
+
+.product-details.horizontal select,
+.product-details.horizontal button {
+  width: 100%;
 }
 
 .product-row input[type="text"],
 .product-row input[type="number"],
 .product-row select {
-  width: 100%;
-  max-width: calc(33% - 10px);
-  padding: 10px;
-  font-size: 16px;
+  width: calc(100% - 20px);
+  padding: 8px;
+  font-size: 14px;
   border: 2px solid #a9acbd;
   border-radius: 4px;
   background-color: transparent;
   color: #807e7e;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 .product-row .delete-from-db {
@@ -289,15 +297,75 @@ body {
     margin-right: 0;
   }
 
+  .products-form {
+    background-color: #ddf0df;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .product-details.horizontal {
+    display: flex;
+    gap: 10px;
+  }
+
+  .product-details.horizontal select {
+    flex: 1;
+  }
+
+  .button-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .horizontal-button {
+    flex: 1; 
+  }
+
+  .save-button {
+    background-color: #a9acbd; 
+    color: #fff;
+  }
+
+  .comparativa-button {
+    background-color: #a9acbd;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .comparativa-button:hover {
+    background-color: #dd8d15;
+  }
+
+  .button-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .button-container button:hover {
+    transform: scale(1.05);
+  }
+
   .delete-button button,
   .comparativa-button,
   .products-form button {
     font-size: 12px;
     padding: 8px 16px;
-  }
-
-  .list-container,
-  .selected-list {
-    width: 100%;
   }
 }

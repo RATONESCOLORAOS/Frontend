@@ -1,10 +1,27 @@
+html,
 body {
-  font-family: Arial, sans-serif;
-  background-color: #e2e2dd;
-  color: #000;
+  height: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-color: #e2e2dd;
+  color: #000;
+  overflow: hidden;
+  flex: 1;
+}
+
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 .three-part-body {
@@ -12,52 +29,49 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
   padding: 20px;
+  flex: 1;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+
+.column-left,
+.column-center,
+.column-right {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .column-left {
-  flex: 0 0 20%; 
+  flex: 0 0 20%;
 }
 
 .column-center,
 .column-right {
-  flex: 1; 
-}
-
-.column-center,
-.column-right {
-  background-size: 100%;
+  flex: 1;
+  background-size: cover;
   background-position: top;
-  margin-top: 80px;
 }
 
-.upper-content {
-  padding: 10px;
-  text-align: center;
-
-  width: 100%;
-  box-sizing: border-box;
-}
+.upper-content,
 .upper-content2 {
   padding: 10px;
   text-align: center;
-  background-color: #e49b5d;
   width: 100%;
   box-sizing: border-box;
 }
 
-.mid-content {
-  padding: 0px;
-  text-align: center;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.upper-content2 {
+  background-color: #e49b5d;
 }
 
-.scrollable-content {
-  max-height: 400px; 
+.product-list-container {
+  flex: 1;
   overflow-y: auto;
-  width: 100%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .logo {
@@ -66,11 +80,11 @@ body {
 }
 
 .small-logo {
-  width: 150px; 
+  width: 150px;
 }
 
 .mercadona-logo {
-  width: 320px; 
+  width: 320px;
 }
 
 .prices {
@@ -81,7 +95,7 @@ body {
 }
 
 .price-card {
-  background-color: #e49b5d; 
+  background-color: #e49b5d;
   color: #ffffff;
   padding: 10px;
   border-radius: 10px;
@@ -97,26 +111,26 @@ body {
   padding: 10px;
   margin: 10px 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 90%;
 }
-
 
 @media (max-width: 668px) {
   .three-part-body {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
+  }
 
   .column-center,
   .column-right {
-    margin-top: 10px; 
+    margin-top: 10px;
     background-size: cover;
     background-position: center;
   }
 
   .upper-content {
-    padding: 10px; 
+    padding: 10px;
   }
 
   .small-logo {
-    width: 100px; 
+    width: 100px;
   }
-}
 }

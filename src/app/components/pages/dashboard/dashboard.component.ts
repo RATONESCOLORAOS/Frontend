@@ -285,4 +285,18 @@ export class DashboardComponent implements OnInit {
     this.products = [];
     console.log('Has salido de la lista');
   }
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.createList();
+    }
+  }
+
+  saveAndUpdate() {
+    this.saveProducts();
+    if (this.products.length > 0) {
+      for (let product of this.products) {
+        this.updateProduct(product);
+      }
+    }
+  }
 }

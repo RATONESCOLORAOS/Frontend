@@ -13,11 +13,11 @@ html {
 main {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .login {
-  background-color: #f9f9f9;
+  background-color: white;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -26,6 +26,9 @@ main {
   align-items: center;
   padding: 20px;
   margin: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
 }
 
 .login img.logo {
@@ -75,7 +78,7 @@ main {
 
 .login .error-message {
   margin-top: 15px;
-  color: rgb(19, 1, 1);
+  color: red;
 }
 
 .right-image {
@@ -93,7 +96,7 @@ footer {
 .two-part-body {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .botones {
@@ -138,7 +141,6 @@ footer {
   .two-part-body {
     display: grid;
     grid-template-columns: 1fr 3fr;
-    height: 100vh;
   }
 
   .right-image {
@@ -146,12 +148,13 @@ footer {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    height: 100%;
+    height: 100vh;
   }
 
   .login {
-    width: 80%;
-    max-width: 400px;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
   }
 }
 
